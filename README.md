@@ -355,6 +355,35 @@ the `xcode-select --install` command. If it does not work, you can try adding th
 export CPPFLAGS="-DXMLSEC_NO_XKMS=1"
 ```
 
+## MinIO
+
+Parts of the The Palace Manager can use [S3](https://aws.amazon.com/s3/) but it is generally inconvenient, during
+development, to have to use a real S3 bucket. For development purposes, therefore, it may be desirable to set up
+a local instance of [MinIO](https://min.io/) in order to effectively provide an S3-compatible storage bucket on your
+local machine. To start up `minio` with the S3 bucket interface listening on `:::9000`, and the MinIO console
+listening on `:::9001`, use the following `docker` command:
+
+```sh
+docker run -d --name minio -p 9001:9001 -p 9000:9000 'bitnami/minio:2022.3.3'
+```
+
+Check that the S3 bucket interface is accessible with `curl`:
+
+```plain
+$ curl http://localhost:9000/
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>AccessDenied</Code><Message>Access Denied.</Message><Resource>/</Resource><RequestId>16F69B493D9B5AA5</RequestId><HostId>c421fe52-0c31-4105-8610-0fff3ec406d2</HostId></Error>
+```
+
+Pointing a browser at `http://localhost:9001` should present the MinIO console login screen. At the time of writing,
+the default root username and password is `minio` and `miniosecret`, respectively:
+
+![.github/readme/minio.png](.github/readme/minio.png)
+
+Having logged in to the console, you can create as many S3 buckets as are needed:
+
+![.github/readme/minio-console.png](.github/readme/minio-console.png)
+
 ## Code Style
 
 Code style on this project is linted using [pre-commit](https://pre-commit.com/). This python application is included
