@@ -144,6 +144,12 @@
         "title": "The Politics of Postmodernism",
         "modified": "2022-09-12T21:04:00.000Z",
         "published": "2002-07-05T00:00:00.000Z",
+        "schema:identifier": [
+          "urn:isbn:9780203426050"
+        ],
+        "schema:isbn": [
+          "1280074531"
+        ],
         "language": [
           "eng"
         ]
