@@ -6,11 +6,11 @@ package_dir = os.path.join(bin_dir, "..")
 sys.path.append(os.path.abspath(package_dir))
 
 from axis import Axis360API
+from circulation import CirculationAPI
 from circulation_exceptions import *
 from overdrive import OverdriveAPI
 from threem import ThreeMAPI
 
-from circulation import CirculationAPI
 from core.model import Identifier, Patron, get_one_or_create, production_session
 
 barcode, pin, borrow_urn, hold_urn = sys.argv[1:5]
